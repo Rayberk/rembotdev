@@ -1,0 +1,11 @@
+{
+    "prefix": "r",
+    "token": "NzEwOTA4NjYzOTAwMDEyNjM5.Xr7TSQ.puWt34w2FcgpGlLQ-v4YTa3hDWA",
+    "bot_age": 1,
+    "words_array": ["Sa", "bb", "This is array"],
+    "bot_info": {
+        "name" : "RemBot",
+        "version" : "Alpha",
+        "Acces" : "Public"
+    }
+}
