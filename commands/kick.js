@@ -31,7 +31,7 @@ module.exports ={
             message.channel.send('Bu kişiyi atmak için yetkim yok!');
         }else {
             if(reason === undefined) reason = 'Belirtilmedi';
-            member.ban(reason)
+            member.kick(reason)
             message.channel.send(embed)
 
         }
