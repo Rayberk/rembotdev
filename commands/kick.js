@@ -17,7 +17,7 @@ module.exports ={
         .setTitle('Kick bildirisi')
         .setDescription(`Üye atıldı, ${member}!`)
         .setColor(0xff0000)
-        .setThumbnail('https://media.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif')
+        .setImage('https://media.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif')
         .addField('Detaylar', `Atılan: ${member} \n Atan: ${banlayan} \n Atıldığı zaman: ${message.createdAt}`)
         if (!member) {
             message.channel.send('Kişi belirtilmedi!');
