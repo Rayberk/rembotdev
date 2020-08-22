@@ -8,8 +8,8 @@ module.exports ={
 
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         
-        const banlayan = message.GuildMember;
-        const perm = message.GuildMember.hasPermission(0x00000004);
+        const banlayan = message.member;
+        const perm = message.member.hasPermission(0x00000004);
         const botperm = message.guild.me.has(0x00000004);
         let reason = args.slice(1).join(" ");
 
