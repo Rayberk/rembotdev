@@ -10,7 +10,7 @@ module.exports ={
         
         const banlayan = message.member;
         const perm = message.member.hasPermission(0x00000004);
-        const botperm = message.guild.me.has(0x00000004);
+        const botperm = message.client.has(0x00000004);
         let reason = args.slice(1).join(" ");
 
         const embed = new Discord.MessageEmbed()
