@@ -18,7 +18,7 @@ module.exports ={
         .setTitle('Ban bildirisi')
         .setDescription(`Üye banlandı, ${member}!`)
         .setColor(0xff0000)
-        .setThumbnail('https://media.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif')
+        .setImage('https://media.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif')
         .addField('Detaylar', `Banlanan: ${member} \n Banlayan: ${banlayan} \n Banlanılan zaman: ${message.createdAt}`)
         if (!member) {
             message.channel.send('Kişi belirtilmedi!');
