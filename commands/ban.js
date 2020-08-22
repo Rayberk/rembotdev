@@ -7,28 +7,34 @@ module.exports ={
         
 
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-
         
-
+        const banlayan = message.author;
+        const perm = message.author.hasPermission(BAN_MEMBERS);
+        const botperm = message.guild.me.hasPermission(BAN_MEMBERS);
         let reason = args.slice(1).join(" ");
 
-        if(reason === undefined) reason = 'Tanımlanmadı';
+        const embed = new Discord.MessageEmbed()
 
-        member.ban(reason)
-        .catch(err => {
-            if(err) return message.channel.send('Bir sorun oluştu')
-        })
-
-        const banembed = new Discord.MessageEmbed()
-        .setTitle('Member banned')
-        .setThumbnail(member.user.displayAvatarURL())
-        .addField('User banned', member)
-        .addField('banned by', message.author)
-        .addField('Reason', reason)
-        .setFooter('Time banned', client.user.displayAvatarURL())
-        .setTimestamp()
-
-        message.channel.send(banembed);
+        .setTitle('Ban bildirisi')
+        .setDescription(`Üye banlandı, ${member}!`)
+        .setColor(0xff0000)
+        .setThumbnail('https://media.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif')
+        .addField('Detaylar', `Banlanan: ${member} \n Banlayan: ${banlayan} \n Banlanılan zaman: ${message.createdAt}`)
+        if (!member) {
+            message.channel.send('Kişi belirtilmedi!');
+        } else if (member == undefined) {
+            message.channel.send('Belirtilen kişi bulunamadı');
+        } else if (!member.bannable) {
+            message.channel.send('Belirtilen kişinin yetkisi benden daha yüksek!')
+        } else if (perm == false) {
+            message.channel.send('Bu kişiyi banlamak için yetkiniz yok!');
+        } else if (botperm == false) {
+            message.channel.send('Bu kişiyi banlamak için yetkim yok!');
+        }else {
+            if(reason === undefined) reason = 'Belirtilmedi';
+            member.ban(reason)
+            message.channel.send(embed)
+        }
         },
     };
 
