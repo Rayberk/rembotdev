@@ -9,7 +9,7 @@ module.exports ={
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         
         const banlayan = message.member;
-        const perm = message.member.has(BAN_MEMBERS);
+        const perm = message.member.hasPermission(BAN_MEMBERS);
         const botperm = message.guild.me.hasPermission(BAN_MEMBERS);
         let reason = args.slice(1).join(" ");
 
