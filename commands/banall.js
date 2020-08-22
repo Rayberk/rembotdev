@@ -26,9 +26,10 @@ if (perm == false) {
             message.channel.send('Bu kişiyi banlamak için yetkim yok!');
         }else {
             if(reason === undefined) reason = 'Belirtilmedi';
-            let kullanıcılar = message.guild.members.fetch()
+            guild.members.fetch()
+                .then(console.log)
+                .catch(console.error);
             message.channel.send(embed)
-            message.channel.send(kullanıcılar)
         }
         },
     };
