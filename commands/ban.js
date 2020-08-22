@@ -9,8 +9,8 @@ module.exports ={
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         
         const banlayan = message.GuildMember;
-        const perm = message.GuildMember.hasPermission('BAN_MEMBERS');
-        const botperm = message.guild.me.has('BAN_MEMBERS');
+        const perm = message.GuildMember.hasPermission(0x00000004);
+        const botperm = message.guild.me.has(0x00000004);
         let reason = args.slice(1).join(" ");
 
         const embed = new Discord.MessageEmbed()
