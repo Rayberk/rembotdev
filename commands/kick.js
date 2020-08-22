@@ -4,26 +4,37 @@ module.exports ={
     name: 'kick',
     description: 'Kick people',
     execute(message, args, command) {
-        if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('You can\'t use that!')
-        if(!message.guild.me.hasPermission("KICK_MEMBERS")) return message.channel.send('I don\'t have the right permissions.')
-
+       
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-
-        if(!args[0]) return message.channel.send('Please specify a user');
-
-        if(!member) return message.channel.send('Can\'t seem to find this user. Sorry \'bout that :/');
-        if(!member.kickable) return message.channel.send('This user can\'t be kicked. It is either because they are a mod/admin, or their highest role is higher than mine');
-
-        if(member.id === message.author.id) return message.channel.send('Bruh, you can\'t kick yourself!');
-
+        
+        const banlayan = message.author;
+        const perm = message.author.hasPermission(KICK_MEMBERS);
+        const botperm = message.guild.me.hasPermission(KICK_MEMBERS);
         let reason = args.slice(1).join(" ");
 
-        if(reason === undefined) reason = 'Unspecified';
+        const embed = new Discord.MessageEmbed()
 
-        member.kick(reason)
-        .catch(err => {
-            if(err) return message.channel.send('Something went wrong')
-        })
+        .setTitle('Kick bildirisi')
+        .setDescription(`Üye atıldı, ${member}!`)
+        .setColor(0xff0000)
+        .setThumbnail('https://media.giphy.com/media/fe4dDMD2cAU5RfEaCU/giphy.gif')
+        .addField('Detaylar', `Atılan: ${member} \n Atan: ${banlayan} \n Atıldığı zaman: ${message.createdAt}`)
+        if (!member) {
+            message.channel.send('Kişi belirtilmedi!');
+        } else if (member == undefined) {
+            message.channel.send('Belirtilen kişi bulunamadı!');
+        } else if (!member.kickable) {
+            message.channel.send('Belirtilen kişinin yetkisi benden daha yüksek!')
+        } else if (perm == false) {
+            message.channel.send('Bu kişiyi atmak için yetkiniz yok!');
+        } else if (botperm == false) {
+            message.channel.send('Bu kişiyi atmak için yetkim yok!');
+        }else {
+            if(reason === undefined) reason = 'Belirtilmedi';
+            member.ban(reason)
+            message.channel.send(embed)
+
+        }
 
         },
     };
