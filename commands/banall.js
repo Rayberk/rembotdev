@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports ={
     name: 'banall',
-    description: 'ban all people',
+    description: 'fetch',
     execute(message, args, command) {
         
 
@@ -24,12 +24,14 @@ if (perm == false) {
             message.channel.send('Bu kişiyi banlamak için yetkiniz yok!');
         } else if (botperm == false) {
             message.channel.send('Bu kişiyi banlamak için yetkim yok!');
-        }else {
+        } else {
             if(reason === undefined) reason = 'Belirtilmedi';
-            message.guild.members.fetch()
-                .then(console.log)
-                .catch(console.error);
-            message.channel.send(embed)
+            let list = Promise.resolve(message.guild.members.cache.array()[0].nickname);
+            
+            for (i = 0; i < message.guild.memberCount; i++) {
+                list = Promise.resolve(message.guild.members.cache.array()[i].nickname);
+                console.log(list    );
+            }
         }
         },
     };
