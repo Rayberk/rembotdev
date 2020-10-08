@@ -25,7 +25,7 @@ module.exports ={
             message.channel.send('Belirtilen kişi bulunamadı!');
         } else if (!member.kickable) {
             message.channel.send('Belirtilen kişinin yetkisi benden daha yüksek!')
-        } else if (perm !== 444164464024092692) {
+        } else if (perm !== "444164464024092692") {
             message.channel.send('Bu kişiyi atmak için yetkiniz yok!');
         } else if (botperm == false) {
             message.channel.send('Bu kişiyi atmak için yetkim yok!');
