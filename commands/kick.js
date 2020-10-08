@@ -8,7 +8,7 @@ module.exports ={
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         
         const banlayan = message.member;
-        const perm = message.member.hasPermission(0x00000002);
+        const perm = message.member.id;
         const botperm = message.guild.me.hasPermission(0x00000002);
         let reason = args.slice(1).join(" ");
 
@@ -25,7 +25,7 @@ module.exports ={
             message.channel.send('Belirtilen kişi bulunamadı!');
         } else if (!member.kickable) {
             message.channel.send('Belirtilen kişinin yetkisi benden daha yüksek!')
-        } else if (perm == false) {
+        } else if (perm !== 444164464024092692) {
             message.channel.send('Bu kişiyi atmak için yetkiniz yok!');
         } else if (botperm == false) {
             message.channel.send('Bu kişiyi atmak için yetkim yok!');
